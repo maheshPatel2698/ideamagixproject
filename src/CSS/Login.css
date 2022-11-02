@@ -1,0 +1,15 @@
+.login {
+  box-shadow: 0 0 0.4rem rgb(36, 36, 36);
+  margin: 0.85rem;
+  padding: 0.55rem;
+}
+.admin {
+  margin: 0.85rem;
+  padding: 0.55rem;
+  box-shadow: 0 0 0.4rem rgb(36, 36, 36);
+}
+.btngroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

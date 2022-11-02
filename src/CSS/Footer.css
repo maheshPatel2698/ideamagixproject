@@ -1,0 +1,25 @@
+.footer {
+  height: auto;
+  color: whitesmoke;
+  background-color: #3e64ff;
+  position: relative;
+  bottom: 0;
+}
+p {
+  text-align: center;
+  margin: 0.25rem;
+}
+.sitemap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.sitemap a {
+  margin: 0.35rem;
+}
+.seconddiv {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,0 +1,15 @@
+.productpannel {
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 850px) {
+  .productpannel {
+    width: auto;
+
+    height: auto;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+}
