@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react'
 import "../CSS/Products.css"
-import { Button, Link, Image, Input, Heading } from '@chakra-ui/react'
+import {
+    Button, Link, Image, Input, Heading,
+} from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
-import axios from "axios"
+
 import storeContext from '../Context/StoreContext'
-
-
+import axios from "axios"
 const Products = () => {
     const { setCart, cart, user, toast } = useContext(storeContext)
     const [query, setQuery] = useState('')
     const [products, setProducts] = useState([])
+    const [val, setval] = useState(Number)
 
     const getAllProducts = async () => {
         const url = `${process.env.REACT_APP_API}/products`
@@ -59,10 +61,33 @@ const Products = () => {
 
         setProducts(filterProducts)
     }
+
+
+    const handleDesc = async (sort) => {
+        let url = `${process.env.REACT_APP_API}/products?sort=${sort}`
+        const response = await axios.get(url)
+        const { data } = response
+        setProducts(data)
+    }
+
+    const handleAsec = async (sort) => {
+        let url = `${process.env.REACT_APP_API}/products?sort=${sort}`
+        const response = await axios.get(url)
+        const { data } = response
+        setProducts(data)
+    }
+    const handlefilter = async () => {
+        let url = `${process.env.REACT_APP_API}/products?limit=${val}`
+        const response = await axios.get(url)
+        const { data } = response
+        setProducts(data)
+        setval(0)
+    }
     useEffect(() => {
 
         query ? filterProducts() : getAllProducts()
         // eslint-disable-next-line
+
     }, [query])
 
     return (
@@ -70,6 +95,11 @@ const Products = () => {
             <div className="filtersec">
                 <Heading m={2} as='h3' size='md'>Search Your Product</Heading>
                 <Input placeholder='Search Your Query Here' value={query} onChange={(e) => setQuery(e.target.value)} />
+                <Button colorScheme='blue' p={5} m={2} varient='solid' onClick={() => handleDesc('desc')} >Desending</Button>
+                <Button colorScheme='blue' p={5} m={2} varient='solid' onClick={() => handleAsec('asec')} >Ascending</Button>
+                <Input placeholder='Enter Number on products you want to see' value={val} onChange={(e) => setval(e.target.value)} />
+                <Button colorScheme='blue' p={5} m={2} varient='solid' onClick={handlefilter} >Filter</Button>
+
             </div>
             <div className='productsection-sub'>
                 {products.length === 0 ? <Heading textAlign='center' as="h1" size='xl'>No Match Product</Heading> : products.map((prod) => {
