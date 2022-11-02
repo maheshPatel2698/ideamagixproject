@@ -40,7 +40,7 @@ const Navbar = () => {
     }
 
     const deleteFromcart = (id) => {
-        console.log(id)
+
         const deleteCart = cart.filter((c) => {
             return c?.id !== id
         })
